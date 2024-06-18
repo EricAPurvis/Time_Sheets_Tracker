@@ -1,0 +1,45 @@
+<!--
+	Created 2024-06-17
+	Created by Eric Purvis
+-->
+
+<!--
+	Modified
+	Modified by 
+-->
+
+<html>
+
+	<head>
+		<title>Home</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<script type="text/javascript" src="./script/baseScript.js"></script>
+		<link href="./styles/baseStyle.css" rel="stylesheet">
+	</head>
+
+	<body>
+	
+		<div class="container">
+		
+			<div class="row">
+				<div class="col-sm-12">
+					<center><h1>Time Sheet Viewer</h1></center>
+				</div>
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-primary" onclick="LoadPage('timeSheets.html');">Timesheets</button>
+					<button type="button" class="btn btn-primary" onclick="LoadPage('employees.html');">Employees</button>
+					<button type="button" class="btn btn-primary" onclick="LoadPage('addEmployee.html');">Add Employee</button>
+				</div>
+				<div class="col-sm-12" id='loadingFrame'></div>
+			</div>
+		
+		</div>
+	
+	</body>
+	
+	<script>
+		LoadPage('timeSheets.html');
+	</script>
+
+</html>

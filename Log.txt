@@ -1,0 +1,1 @@
+Minor issues with the HTML table not showing some data even though the data exists or when replaced with hard code and is proven with the console.log command - Will ignore for now and finish the other requirements (I spent too much time on trying to figure out this minor issue)

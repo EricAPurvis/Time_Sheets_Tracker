@@ -1,0 +1,123 @@
+<!--
+	Created 2024-06-17
+	Created by Eric Purvis
+-->
+
+<!--
+	Modified
+	Modified by 
+-->
+
+<html>
+
+	<head>
+		<title>Time Sheets</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<link href="./styles/baseStyle.css" rel="stylesheet">
+	</head>
+
+	<body>	
+	
+		<div class="container">
+		
+			<div class="row">
+			
+				<div class="col-sm-12" id='loadingFrame'>
+					<table class="table" id="table">
+						<thead>
+							<tr>
+								<th scope="col">Edit</th>
+								<th scope="col">ts_id</th>
+								<th scope="col">emp_id</th>
+								<th scope="col">ts_date</th>
+								<th scope="col">ts_approved</th>
+								<th scope="col">start_time</th>
+								<th scope="col">end_time</th>
+								<th scope="col">hours</th>
+								<th scope="col">minutes</th>
+								<th scope="col">overtime</th>
+								<th scope="col">modified</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				
+			</div>
+		
+		</div>
+		
+	</body>
+	
+	<script>
+	
+		var array = new Array();
+	
+		function PopulateTable(ts_id, emp_id, ts_date, ts_approved, start_time, end_time, hours, minutes, overtime, modified){
+			
+			var table = document.getElementById("table");
+			var count = table.rows.length;
+			var row = table.insertRow(count);
+			//console.log("Row length "+count);
+			
+			row.insertCell(0).innerHtml = "<button>Edit</button>";
+		//	row.insertCell(1).innerHtml = "<button>Edit</button>";
+			
+		//	row.insertCell(2).innerHtml = "<button>Edit</button>";
+			
+		//	console.log("ts_id: "+ts_id);
+		
+			row.insertCell(1).innerHtml = "123";
+			
+			row.insertCell(2).innerHTML = emp_id;
+			row.insertCell(3).innerHTML = ts_date;
+			row.insertCell(4).innerHTML = ts_approved;
+			row.insertCell(5).innerHTML = start_time;
+			row.insertCell(6).innerHTML = end_time;
+			row.insertCell(7).innerHTML = hours;
+			row.insertCell(8).innerHTML = minutes;
+			row.insertCell(9).innerHTML = overtime;
+			row.insertCell(10).innerHTML = modified;
+			
+		}
+	
+		function Load(){
+			$.ajax({
+					
+					type: 'POST',
+					dataType: "json",
+					url:'php/loadTimeSheets.php',
+					data:{},
+					
+					success: function(data)
+					{ 
+						//console.log(data);
+						array=data['data'];
+						//data = JSON.parse(data);
+						//console.log("Success");
+						Implement();
+					},
+					
+					error: function(xhr, status, error) {
+					console.log("Load Request! NOT Successful!");
+					  var err = eval("ERROR: (" + xhr.responseText + ")");
+					  alert(err.Message);
+					}
+					
+				});
+		}
+		
+		function Implement(){
+			//console.log("Pop:"+array.length);
+			for(var x=0; x<array.length; x++){
+				PopulateTable(array[x]['ts_id'], array[x]['emp_id'], array[x]['ts_date'], array[x]['ts_approved'], array[x]['start_time'], array[x]['end_time'], array[x]['hours'], array[x]['minutes'], array[x]['overtime'], array[x]['modified']);
+			}
+		}
+		
+		Load();
+		
+	</script>
+	
+
+</html>
