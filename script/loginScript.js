@@ -35,3 +35,10 @@ function sendLoginRequest(login_id, password){
 		}
 	});
 }
+
+function logout(){
+	localStorage.setItem("user", null);
+	localStorage.setItem("pass", null);
+	localStorage.setItem("loggedIn", false);
+	alert("Successfully logged out");
+}
