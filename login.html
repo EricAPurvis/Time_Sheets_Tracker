@@ -1,5 +1,5 @@
 <!--
-	Created 2024-06-17
+	Created 2024-06-19
 	Created by Eric Purvis
 -->
 
@@ -11,51 +11,40 @@
 <html>
 
 	<head>
-		<title>Time Sheets</title>
+		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-		<script type="text/javascript" src="./script/timeSheetsScript.js"></script>
+		<script type="text/javascript" src="./script/loginScript.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 		<link href="./styles/baseStyle.css" rel="stylesheet">
 	</head>
-
+	
 	<body>	
 	
 		<div class="container">
 		
 			<div class="row">
-			
 				<div class="col-sm-12" id='loadingFrame'>
-					<table class="table" id="table">
-						<thead>
-							<tr>
-								<th scope="col">Edit</th>
-								<th scope="col">ts_id</th>
-								<th scope="col">emp_id</th>
-								<th scope="col">ts_date</th>
-								<th scope="col">ts_approved</th>
-								<th scope="col">start_time</th>
-								<th scope="col">end_time</th>
-								<th scope="col">hours</th>
-								<th scope="col">minutes</th>
-								<th scope="col">overtime</th>
-								<th scope="col">modified</th>
-							</tr>
-						</thead>
-					</table>
-				</div>
 				
+					<div class="form-group">
+					
+						<label for="login"><b>Login ID:</b></label>
+						<input type="text" class="form-control" id="login">
+						
+						<label for="password"><b>Password:</b></label>
+						<input type="password" class="form-control" id="password">
+					  
+						<button type="button" class="btn btn-primary btn-lg" onclick="sendLoginRequest(login, password);">Login</button>
+					  
+					</div>
+				
+				</div>
 			</div>
 		
 		</div>
 		
 	</body>
 	
-	<script>
-		Load();
-	</script>
-	
-
 </html>

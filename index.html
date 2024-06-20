@@ -27,6 +27,7 @@
 					<center><h1>Time Sheet Viewer</h1></center>
 				</div>
 				<div class="col-sm-12">
+					<button type="button" class="btn btn-primary" onclick="LoadPage('login.html');">Login</button>
 					<button type="button" class="btn btn-primary" onclick="LoadPage('timeSheets.html');">Timesheets</button>
 					<button type="button" class="btn btn-primary" onclick="LoadPage('employees.html');">Employees</button>
 					<button type="button" class="btn btn-primary" onclick="LoadPage('addEmployee.html');">Add Employee</button>
@@ -39,7 +40,13 @@
 	</body>
 	
 	<script>
-		LoadPage('timeSheets.html');
+		
+		if(localStorage.getItem("loggedIn")){
+			LoadPage('timeSheets.html');
+		}else{
+			LoadPage('login.html');
+		}
+		
 	</script>
 
 </html>

@@ -32,39 +32,61 @@
 			
 	}
 	
-	function loadFromSQL(){
+	function validateLogin(){
 		
-		// database connection code
-		$array = array();
-
         $con = new mysqli('localhost', 'root', '', 'practicum_timetable_database');
         if ($con->connect_error) {
-			$array[] = new Employees(0, 0, 'Name Error', "N", "Error", "Error", "Error");
-            return($array);
+            return(false);
         }
-		
-		$sql="Select * from employees";
-		$result = $con->query($sql);
-
-		if ($result->num_rows > 0) {
-				
-			//output data of each row
-			while($row = $result->fetch_assoc()) {
-				
-				$emp_id=$row["emp_id"];
-				$login_id=$row["login_id"];
-				$emp_name=$row["emp_name"];
-				$overtime=$row["overtime"];
-				$emp_start=$row["emp_start"];
-				$emp_end=$row["emp_end"];
-				$modified=$row["modified"];
-				
-				$array[] = new Employees($emp_id, $login_id, $emp_name, $overtime, $emp_start, $emp_end, $modified);
-			}
-
-		}
+	
+		$login_id = $_POST["login_id"];
+		$password = $_POST["password"];
 			
+		$sql = "SELECT user_id FROM users where login_id='$login_id' and password='$password'";
+	
+		return($con->query($sql)->fetch_assoc()["user_id"]);
+		
+	}
+	
+	function loadFromSQL(){
+		
+		$array = array();
+		
+		if( validateLogin() ){
+		
+			// database connection code
+
+			$con = new mysqli('localhost', 'root', '', 'practicum_timetable_database');
+			if ($con->connect_error) {
+				$array[] = new Employees(0, 0, 'Name Error', "N", "Error", "Error", "Error");
+				return($array);
+			}
+			
+			$sql="Select * from employees";
+			$result = $con->query($sql);
+
+			if ($result->num_rows > 0) {
+					
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					
+					$emp_id=$row["emp_id"];
+					$login_id=$row["login_id"];
+					$emp_name=$row["emp_name"];
+					$overtime=$row["overtime"];
+					$emp_start=$row["emp_start"];
+					$emp_end=$row["emp_end"];
+					$modified=$row["modified"];
+					
+					$array[] = new Employees($emp_id, $login_id, $emp_name, $overtime, $emp_start, $emp_end, $modified);
+				}
+
+			}
+			
+		}
+		
 		return($array);
+		
 	}
 		
 	function encodeDataStream(){

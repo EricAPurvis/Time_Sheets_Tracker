@@ -14,7 +14,10 @@
 		<title>Employees</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+		<script type="text/javascript" src="./script/employeesScript.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 		<link href="./styles/baseStyle.css" rel="stylesheet">
 	</head>
 
@@ -49,63 +52,7 @@
 	</body>
 	
 	<script>
-	
-		var array = new Array();
-	
-		function PopulateTable(emp_id, login_id, emp_name, overtime, emp_start, emp_end, modified){
-			
-			var table = document.getElementById("table");
-			var count = table.rows.length;
-			var row = table.insertRow(count);
-			//console.log("Row length "+count);
-			
-			row.insertCell(0).innerHtml = "<button>Edit</button>";
-
-			row.insertCell(1).innerHTML = emp_id;
-			row.insertCell(2).innerHTML = login_id;
-			row.insertCell(3).innerHTML = emp_name;
-			row.insertCell(4).innerHTML = overtime;
-			row.insertCell(5).innerHTML = emp_start;
-			row.insertCell(6).innerHTML = emp_end;
-			row.insertCell(7).innerHTML = modified;
-			
-		}
-	
-		function Load(){
-			$.ajax({
-					
-					type: 'POST',
-					dataType: "json",
-					url:'php/loadEmployees.php',
-					data:{},
-					
-					success: function(data)
-					{ 
-					//	console.log(data);
-						array=data['data'];
-						//data = JSON.parse(data);
-						//console.log("Success");
-						Implement();
-					},
-					
-					error: function(xhr, status, error) {
-					console.log("Load Request! NOT Successful!");
-					  var err = eval("ERROR: (" + xhr.responseText + ")");
-					  alert(err.Message);
-					}
-					
-				});
-		}
-		
-		function Implement(){
-			//console.log("Pop:"+array.length);
-			for(var x=0; x<array.length; x++){
-				PopulateTable(array[x]['emp_id'], array[x]['login_id'], array[x]['emp_name'], array[x]['overtime'], array[x]['emp_start'], array[x]['emp_end'], array[x]['modified']);
-			}
-		}
-		
 		Load();
-		
 	</script>
 
 </html>
