@@ -5,6 +5,8 @@ function sendLoginRequest(login_id, password){
 			
 	let pass2 = CryptoJS.MD5(pass1).toString();
 			
+	//console.log(pass2);
+			
 	$.ajax({
 		url: 'php/validateLogin.php',
 		type: "POST",

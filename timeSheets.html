@@ -19,6 +19,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 		<link href="./styles/baseStyle.css" rel="stylesheet">
+		<link href="./styles/timeSheetsStyle.css" rel="stylesheet">
 	</head>
 
 	<body>	
@@ -31,7 +32,7 @@
 					<table class="table" id="table">
 						<thead>
 							<tr>
-								<th scope="col">Edit</th>
+								<th scope="col"></th>
 								<th scope="col">ts_id</th>
 								<th scope="col">emp_id</th>
 								<th scope="col">ts_date</th>
@@ -45,6 +46,15 @@
 							</tr>
 						</thead>
 					</table>
+					<div class="col-sm-12">
+						<label for="tr_id"><b>TR ID:</b></label><input type="text" class="form-control" id="tr_id" value="tr_id" disabled>
+						<label for="ts_id"><b>TS ID:</b></label><input type="text" class="form-control" id="ts_id" value="ts_id" disabled>
+						<label for="time_from"><b>Time From:</b></label><input type="text" class="form-control" id="time_from" value="time_from" disabled>
+						<label for="time_out"><b>Time Out:</b></label><input type="text" class="form-control" id="time_out" value="time_out" disabled> 
+						<label for="description"><b>Description:</b></label><input type="text" class="form-control" id="description" value="description" disabled>
+						<label for="modified"><b>Modified:</b></label><input type="date" class="form-control" id="modified" value="modified" disabled>
+					</div>
+					
 				</div>
 				
 			</div>
