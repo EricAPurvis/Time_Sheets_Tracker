@@ -33,14 +33,35 @@ function sendAddEmployeeRequest(login_id, emp_name, overtime, emp_start, emp_end
 				overtime.value="";
 				emp_start.value="";
 				emp_end.value="";
-				alert("Employee Added Successfully");
+				addingEmployeeSuccess();
 			}else{
-				alert("Employee Added Failed");
+				addingEmployeeFailed();
 			}
 		},
 		error:function(){
-			alert("Adding Employee Error");
+			addingEmployeeFailed();
 		}
 	});
 }		
-		
+
+function addingEmployeeSuccess(){
+	let obj = document.getElementById("employeeSuccessAlert");
+	obj.style.display = "block";
+	hideAddingEmployeeFailed();
+}
+
+function addingEmployeeFailed(){
+	let obj = document.getElementById("employeeFailedAlert");
+	obj.style.display = "block";
+	hideAddingEmployeeSuccess();
+}
+
+function hideAddingEmployeeSuccess(){
+	let obj = document.getElementById("employeeSuccessAlert");
+	obj.style.display = "none";
+}
+
+function hideAddingEmployeeFailed(){
+	let obj = document.getElementById("employeeFailedAlert");
+	obj.style.display = "none";
+}

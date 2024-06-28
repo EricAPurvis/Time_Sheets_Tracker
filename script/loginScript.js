@@ -26,14 +26,14 @@ function sendLoginRequest(login_id, password){
 				localStorage.setItem("user", user);
 				localStorage.setItem("pass", pass1);
 				localStorage.setItem("loggedIn", true);
-				alert("Successfully logged in");
+				loginSuccess();
 			}else{
-				alert("Username or Password Not Correct");
+				loginFailed();
 			}
 
 		},
 		error:function(){
-			alert("Login Error");
+			loginFailed();
 		}
 	});
 }
@@ -42,5 +42,41 @@ function logout(){
 	localStorage.setItem("user", null);
 	localStorage.setItem("pass", null);
 	localStorage.setItem("loggedIn", false);
-	alert("Successfully logged out");
+	logoutSuccess();
+}
+
+function loginFailed(){
+	let obj = document.getElementById("failedAlert");
+	obj.style.display = "block";
+	hideLoginSuccess();
+	hideLogoutSuccess()
+}
+
+function loginSuccess(){
+	let obj = document.getElementById("successAlert");
+	obj.style.display = "block";
+	hideLoginFailed();
+	hideLogoutSuccess()
+}
+
+function logoutSuccess(){
+	let obj = document.getElementById("logoutSuccessAlert");
+	obj.style.display = "block";
+	hideLoginFailed();
+	hideLoginSuccess();
+}
+
+function hideLoginFailed(){
+	let obj = document.getElementById("failedAlert");
+	obj.style.display = "none";
+}
+
+function hideLoginSuccess(){
+	let obj = document.getElementById("successAlert");
+	obj.style.display = "none";
+}
+
+function hideLogoutSuccess(){
+	let obj = document.getElementById("logoutSuccessAlert");
+	obj.style.display = "none";
 }

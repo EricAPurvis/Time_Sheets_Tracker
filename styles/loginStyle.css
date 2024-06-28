@@ -1,0 +1,11 @@
+#successAlert{
+	display: none;
+}
+
+#logoutSuccessAlert{
+	display:none;
+}
+
+#failedAlert{
+	display: none;
+}

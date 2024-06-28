@@ -18,7 +18,7 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
-		<link href="./styles/baseStyle.css" rel="stylesheet">
+		<link href="./styles/addEmployeeStyle.css" rel="stylesheet">
 	</head>
 
 	<body>	
@@ -52,6 +52,9 @@
 						<button type="button" class="btn btn-primary btn-lg" onclick="sendAddEmployeeRequest(login_id, emp_name, overtime, emp_start, emp_end);">Add Employee</button>
 					  
 					</div>
+				
+					<div class="alert alert-danger" role="alert" id="employeeFailedAlert">Adding Employee Failed</div>	
+					<div class="alert alert-success" role="alert" id="employeeSuccessAlert">Adding Employee Success</div>
 				
 				</div>
 			</div>

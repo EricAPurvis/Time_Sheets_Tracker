@@ -1,1 +1,14 @@
-All issues resolved. Everything should be as required and more from phase 1 and phase 2 specifications.
+Current:
+	JavaScript:
+	changed all instances of var to let with the exception of array data.
+	
+	php:
+	changed all array = array() to array = [];
+
+	Html:
+	changed all alert to inline alerts
+
+	Concerns:
+	The php query for username is not case sensitive, but the password is unless that a result of the md5 hashing prior to accessing the MySQL database.
+
+Previously: All issues resolved. Everything should be as required and more from phase 1 and phase 2 specifications.

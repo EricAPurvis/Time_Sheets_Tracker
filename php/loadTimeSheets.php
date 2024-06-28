@@ -56,7 +56,7 @@
 	
 	function loadFromSQL(){
 		
-		$array = array();
+		$array = [];
 		
 		if(validateLogin()){
 			

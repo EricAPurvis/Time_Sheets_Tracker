@@ -2,3 +2,11 @@
 	background: rgba(0,0,0,0);
 	border: 0px;
 }
+
+#loadFailedAlert{
+	display: none;
+}
+
+#viewFailedAlert{
+	display:none;
+}

@@ -1,10 +1,8 @@
-var array = new Array();
-	
 function PopulateTable(emp_id, login_id, emp_name, overtime, emp_start, emp_end, modified){
 			
-	var table = document.getElementById("table");
-	var count = table.rows.length;
-	var row = table.insertRow(count);
+	let table = document.getElementById("table");
+	let count = table.rows.length;
+	let row = table.insertRow(count);
 			
 	row.insertCell(0).innerHTML = "<button class='btn btn-success' onclick='editEmployee(this,"+emp_id+" , login_id_"+emp_id+", emp_name_"+emp_id+", overtime_"+emp_id+", emp_start_"+emp_id+", emp_end_"+emp_id+")' value=false>Edit</button>";
 
@@ -31,20 +29,19 @@ function Load(){
 					
 		success: function(data)
 		{ 
-			array=data['data'];
-			Implement();
+			var array=data['data'];
+			Implement(array);
 		},
 					
-			error: function(xhr, status, error) {
-			console.log("Load Request! NOT Successful!");
-			var err = eval("ERROR: (" + xhr.responseText + ")");
-			alert(err.Message);
+		error: function(xhr, status, error) {
+			//Php failed
+			loadFailedAlert();
 		}
 					
 	});
 }
 		
-function Implement(){
+function Implement(array){
 	for(var x=0; x<array.length; x++){
 		PopulateTable(array[x]['emp_id'], array[x]['login_id'], array[x]['emp_name'], array[x]['overtime'], array[x]['emp_start'], array[x]['emp_end'], array[x]['modified']);
 	}
@@ -101,14 +98,42 @@ function sendUpdateEmployeeRequest(emp_id_value, login_id, emp_name, overtime, e
 			}catch(e) {}
 									
 			if(data['data']){
-				alert("Employee Updated Successfully");
+				employeeUpdateSuccessAlert();
 			}else{
-				alert("Employee Updated Failed");
+				employeeUpdateFailedAlert();
 			}
 		},
 		error:function(){
-			alert("Updating Employee Error");
+			employeeUpdateFailedAlert();
 		}
 	});
 }		
-		
+
+
+function loadFailedAlert(){
+	let obj = document.getElementById("loadFailedAlert");
+	obj.style.display = "block";
+}
+
+
+function employeeUpdateFailedAlert(){
+	let obj = document.getElementById("employeeUpdateFailedAlert");
+	obj.style.display = "block";
+	hideEmployeeUpdateSuccessAlert();
+}
+
+function employeeUpdateSuccessAlert(){
+	let obj = document.getElementById("employeeUpdateSuccessAlert");
+	obj.style.display = "block";
+	hideEmployeeUpdateFailedAlert();
+}
+
+function hideEmployeeUpdateFailedAlert(){
+	let obj = document.getElementById("employeeUpdateFailedAlert");
+	obj.style.display = "none";
+}
+
+function hideEmployeeUpdateSuccessAlert(){
+	let obj = document.getElementById("employeeUpdateSuccessAlert");
+	obj.style.display = "none";
+}

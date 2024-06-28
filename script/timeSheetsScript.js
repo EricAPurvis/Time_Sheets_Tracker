@@ -1,10 +1,8 @@
-var array = new Array();
-	
 function PopulateTable(ts_id_value, emp_id, ts_date, ts_approved, start_time, end_time, hours, minutes, overtime, modified){
 			
-	var table = document.getElementById("table");
-	var count = table.rows.length;
-	var row = table.insertRow(count);
+	let table = document.getElementById("table");
+	let count = table.rows.length;
+	let row = table.insertRow(count);
 	
 	row.insertCell(0).innerHTML = "<button class='btn btn-success' onclick='View("+ts_id_value+", tr_id, ts_id, time_from, time_out, description, modified)'>View</button>";
 
@@ -34,21 +32,20 @@ function Load(){
 					
 		success: function(data)
 		{ 
-			array=data['data'];
-			Implement();
+			var array=data['data'];
+			Implement(array);
 		},
 					
 		error: function(xhr, status, error) {
-			console.log("Load Request! NOT Successful!");
-			var err = eval("ERROR: (" + xhr.responseText + ")");
-			alert(err.Message);
+			//Php failed
+			loadFailedAlert();
 		}
 					
 	});
 }
 		
-function Implement(){
-	for(var x=0; x<array.length; x++){
+function Implement(array){
+	for(let x=0; x<array.length; x++){
 		PopulateTable(array[x]['ts_id'], array[x]['emp_id'], array[x]['ts_date'], array[x]['ts_approved'], array[x]['start_time'], array[x]['end_time'], array[x]['hours'], array[x]['minutes'], array[x]['overtime'], array[x]['modified']);
 	}
 }
@@ -82,11 +79,20 @@ function View(ts_id_value, tr_id, ts_id, time_from, time_out, description, modif
 			
 		},
 					
-			error: function(xhr, status, error) {
-			console.log("Load Request! NOT Successful!");
-			var err = eval("ERROR: (" + xhr.responseText + ")");
-			alert(err.Message);
+		error: function(xhr, status, error) {
+			//Php failed
+			viewFailedAlert();
 		}
 					
 	});
+}
+
+function loadFailedAlert(){
+	let obj = document.getElementById("loadFailedAlert");
+	obj.style.display = "block";
+}
+
+function viewFailedAlert(){
+	let obj = document.getElementById("viewFailedAlert");
+	obj.style.display = "block";
 }
